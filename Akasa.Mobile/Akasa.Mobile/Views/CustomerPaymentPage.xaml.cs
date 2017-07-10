@@ -5,17 +5,17 @@ using Xamarin.Forms;
 
 namespace Akasa.Mobile.Views
 {
-	public partial class ItemDetailPage : ContentPage
+	public partial class CustomerPaymentPage : ContentPage
 	{
-		ItemDetailViewModel viewModel;
+	    private CustomerPaymentViewModel viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
-        public ItemDetailPage()
+        public CustomerPaymentPage()
         {
             InitializeComponent();
         }
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public CustomerPaymentPage(CustomerPaymentViewModel viewModel)
 		{
 			InitializeComponent();
 

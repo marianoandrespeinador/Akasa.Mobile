@@ -10,26 +10,26 @@ using Xamarin.Forms;
 
 namespace Akasa.Mobile.ViewModels
 {
-	public class ItemsViewModel : BaseViewModel
+	public class ItemsViewModel : BaseViewModel<Customer>
 	{
-		public ObservableRangeCollection<Item> Items { get; set; }
+		public ObservableRangeCollection<Customer> Customers { get; set; }
 		public Command LoadItemsCommand { get; set; }
 
 		public ItemsViewModel()
 		{
 			Title = "Browse";
-			Items = new ObservableRangeCollection<Item>();
+		    Customers = new ObservableRangeCollection<Customer>();
 			LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-			MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+			MessagingCenter.Subscribe<NewCustomerPage, Customer>(this, "AddCustomer", async (obj, item) =>
 			{
-				var _item = item as Item;
-				Items.Add(_item);
+				var _item = item;
+			    Customers.Add(_item);
 				await DataStore.AddItemAsync(_item);
 			});
 		}
 
-		async Task ExecuteLoadItemsCommand()
+	    private async Task ExecuteLoadItemsCommand()
 		{
 			if (IsBusy)
 				return;
@@ -38,9 +38,9 @@ namespace Akasa.Mobile.ViewModels
 
 			try
 			{
-				Items.Clear();
+			    Customers.Clear();
 				var items = await DataStore.GetItemsAsync(true);
-				Items.ReplaceRange(items);
+			    Customers.ReplaceRange(items);
 			}
 			catch (Exception ex)
 			{
@@ -48,7 +48,7 @@ namespace Akasa.Mobile.ViewModels
 				MessagingCenter.Send(new MessagingCenterAlert
 				{
 					Title = "Error",
-					Message = "Unable to load items.",
+					Message = "Unable to load customers.",
 					Cancel = "OK"
 				}, "message");
 			}

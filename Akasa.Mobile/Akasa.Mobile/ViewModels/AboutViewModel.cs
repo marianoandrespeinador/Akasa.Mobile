@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Input;
+using Akasa.Mobile.Models;
 using Xamarin.Forms;
 
 namespace Akasa.Mobile.ViewModels
 {
-	public class AboutViewModel : BaseViewModel
+	public class AboutViewModel : BaseViewModel<Customer>
 	{
 		public AboutViewModel()
 		{

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akasa.Mobile.UWP", "Akasa.M
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Akasa.Mobile\Akasa.Mobile\Akasa.Mobile.projitems*{4bfe82eb-feec-46d7-b98c-12504fa86e1e}*SharedItemsImports = 4
+		Akasa.Mobile\Akasa.Mobile\Akasa.Mobile.projitems*{56b829e3-4243-47e9-b8ca-10266f07751e}*SharedItemsImports = 4
 		Akasa.Mobile\Akasa.Mobile\Akasa.Mobile.projitems*{c1408d7f-b2d8-4a8e-9d5d-96aae8452f4e}*SharedItemsImports = 13
 		Akasa.Mobile\Akasa.Mobile\Akasa.Mobile.projitems*{e14a6497-6b30-442c-8336-1766d0aa878a}*SharedItemsImports = 4
 	EndGlobalSection

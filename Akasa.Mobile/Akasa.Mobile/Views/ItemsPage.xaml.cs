@@ -9,7 +9,7 @@ namespace Akasa.Mobile.Views
 {
 	public partial class ItemsPage : ContentPage
 	{
-		ItemsViewModel viewModel;
+	    private ItemsViewModel viewModel;
 
 		public ItemsPage()
 		{
@@ -18,28 +18,28 @@ namespace Akasa.Mobile.Views
 			BindingContext = viewModel = new ItemsViewModel();
 		}
 
-		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+	    private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
 		{
-			var item = args.SelectedItem as Item;
+			var item = args.SelectedItem as Customer;
 			if (item == null)
 				return;
 
-			await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+			await Navigation.PushAsync(new CustomerPaymentPage(new CustomerPaymentViewModel(item)));
 
 			// Manually deselect item
 			ItemsListView.SelectedItem = null;
 		}
 
-		async void AddItem_Clicked(object sender, EventArgs e)
+	    private async void AddCustomer_Clicked(object sender, EventArgs e)
 		{
-			await Navigation.PushAsync(new NewItemPage());
+			await Navigation.PushAsync(new NewCustomerPage());
 		}
 
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
 
-			if (viewModel.Items.Count == 0)
+			if (viewModel.Customers.Count == 0)
 				viewModel.LoadItemsCommand.Execute(null);
 		}
 	}
