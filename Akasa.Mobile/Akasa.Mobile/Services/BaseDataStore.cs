@@ -13,31 +13,26 @@ namespace Akasa.Mobile.Services
     public abstract class BaseDataStore<T> : IDataStore<T>
         where T: BaseDto
     {
-        protected abstract string _basePath { get; }
         private bool isInitialized;
         private List<T> items;
+
+        protected abstract string _baseBath { get; }
 
         public async Task<bool> AddItemAsync(T item)
         {
             await InitializeAsync();
-            var sContentType = "application/json"; // or application/xml
 
-            try
+            var customerInserted = await new AkasaHttpClient().Post<T, T>(_baseBath, item);
+
+            var success = customerInserted.Id > 0;
+
+            if (success)
             {
-                //var oJsonObject = new JObject { { nameof(item.Name), item.Name } };
-                var oJsonObject = JObject.FromObject(item);
-                var client = new HttpClient();
-                var response = await client.PostAsync(_basePath, new StringContent(oJsonObject.ToString(), Encoding.UTF8, sContentType));
-                var customerJson = JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
-                item.Id = customerJson.Id;
+                item.Id = customerInserted.Id;
                 items.Add(item);
             }
-            catch (Exception e)
-            {
-                //DisplayAlert("Alert", "Error on insert", "OK");
-            }
 
-            return await Task.FromResult(true);
+            return success;
         }
 
         public async Task<bool> UpdateItemAsync(T item)
@@ -91,7 +86,7 @@ namespace Akasa.Mobile.Services
             if (isInitialized)
                 return;
 
-            items = new List<T>();
+            items = await new AkasaHttpClient().Get<List<T>>(_baseBath);
             //var _items = new List<Item>
             //{
             //	new Item { Id = Guid.NewGuid().ToString(), Text = "Buy some cat food", Description="The cats are hungry"},

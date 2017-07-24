@@ -7,15 +7,15 @@ using Xamarin.Forms;
 
 namespace Akasa.Mobile.Views
 {
-	public partial class ItemsPage : ContentPage
+	public partial class CustomersPage : ContentPage
 	{
-	    private ItemsViewModel viewModel;
+	    private CustomersViewModel viewModel;
 
-		public ItemsPage()
+		public CustomersPage()
 		{
 			InitializeComponent();
 
-			BindingContext = viewModel = new ItemsViewModel();
+			BindingContext = viewModel = new CustomersViewModel();
 		}
 
 	    private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

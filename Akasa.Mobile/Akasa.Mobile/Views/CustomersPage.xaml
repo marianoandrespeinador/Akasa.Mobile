@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Akasa.Mobile.Views.ItemsPage"
+             x:Class="Akasa.Mobile.Views.CustomersPage"
               Title="{Binding Title}"
-             x:Name="BrowseItemsPage">
+             x:Name="BrowseCustomersPage">
   <ContentPage.ToolbarItems>
   	<ToolbarItem Text="Add Customer" Clicked="AddCustomer_Clicked" />
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
     <StackLayout>
       <ListView x:Name="ItemsListView"
-				ItemsSource="{Binding Items}"
+				ItemsSource="{Binding Customers}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
                 RefreshCommand="{Binding LoadItemsCommand}"
@@ -22,13 +22,11 @@
           <DataTemplate>
             <ViewCell>
               <StackLayout Padding="10">
-                <Label Text="{Binding Text}"
+                <Label Text="{Binding Name}"
                        LineBreakMode="NoWrap"
-                       Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16"/>
-                <Label Text="{Binding Description}"
+                <Label Text="{Binding Phone}"
                        LineBreakMode="NoWrap"
-                       Style="{DynamicResource ListItemDetailTextStyle}"
                        FontSize="13"/>
               </StackLayout>
             </ViewCell>

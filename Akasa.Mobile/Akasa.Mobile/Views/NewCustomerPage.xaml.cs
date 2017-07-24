@@ -1,7 +1,7 @@
 ﻿using System;
 
 using Akasa.Mobile.Models;
-
+using Akasa.Mobile.ViewModels;
 using Xamarin.Forms;
 
 namespace Akasa.Mobile.Views
@@ -21,7 +21,7 @@ namespace Akasa.Mobile.Views
 
 	    private async void Save_Clicked(object sender, EventArgs e)
 		{
-			MessagingCenter.Send(this, "AddCustomer", Customer);
+			MessagingCenter.Send(this, CustomersViewModel.addCustomer, Customer);
 			await Navigation.PopToRootAsync();
 		}
 	}

@@ -21,7 +21,7 @@ namespace Akasa.Mobile
             {
                 Children =
                 {
-                    new NavigationPage(new ItemsPage())
+                    new NavigationPage(new CustomersPage())
                     {
                         Title = "Browse",
                         Icon = Device.OnPlatform("tab_feed.png",null,null)

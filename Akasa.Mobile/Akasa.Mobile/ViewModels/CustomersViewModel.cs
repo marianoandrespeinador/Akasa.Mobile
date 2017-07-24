@@ -10,18 +10,19 @@ using Xamarin.Forms;
 
 namespace Akasa.Mobile.ViewModels
 {
-	public class ItemsViewModel : BaseViewModel<Customer>
+	public class CustomersViewModel : BaseViewModel<Customer>
 	{
+	    public static string addCustomer = "AddCustomer";
 		public ObservableRangeCollection<Customer> Customers { get; set; }
 		public Command LoadItemsCommand { get; set; }
 
-		public ItemsViewModel()
+		public CustomersViewModel()
 		{
 			Title = "Browse";
 		    Customers = new ObservableRangeCollection<Customer>();
 			LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-			MessagingCenter.Subscribe<NewCustomerPage, Customer>(this, "AddCustomer", async (obj, item) =>
+			MessagingCenter.Subscribe<NewCustomerPage, Customer>(this, addCustomer, async (obj, item) =>
 			{
 				var _item = item;
 			    Customers.Add(_item);
